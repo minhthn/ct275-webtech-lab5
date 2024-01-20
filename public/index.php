@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Controllers\Auth\RegisterController;
 use App\Controllers\Auth\LoginController;
+use App\Controllers\Controller;
 use App\Controllers\HomeController;
 use Bramus\Router\Router;
 
@@ -17,11 +18,6 @@ require_once __DIR__ . '/../bootstrap.php';
 
 $router = new Router();
 
-$router->set404(function () {
-    header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
-    echo '404, Route not found ~~!';
-});
-
 $router->get('/register', RegisterController::class . '@index');
 $router->post('/register', RegisterController::class . '@store');
 $router->get('/login', LoginController::class . '@index');
@@ -30,5 +26,7 @@ $router->post('/logout', LoginController::class . '@logoutUser');
 
 $router->get('/', HomeController::class . '@index');
 $router->get('/home', HomeController::class . '@index');
+
+$router->set404(Controller::class . '@sendNotFound');
 
 $router->run();
