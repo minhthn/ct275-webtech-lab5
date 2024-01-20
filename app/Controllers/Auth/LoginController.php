@@ -2,17 +2,31 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers;
+namespace App\Controllers\Auth;
 
+use App\Controllers\Controller;
 use App\SessionGuard;
 use App\Models\User;
 
 class LoginController extends Controller {
+    public function __construct() {
+        if (SessionGuard::isUserLoggedIn()) {
+            redirect('/home');
+        }
+        parent::__construct();
+    }
+
+
     public function index() {
         if (SessionGuard::isUserLoggedIn()) {
             redirect('/home');
         }
-        $this->sendPage('auth/login', []);
+        $data = [
+            'message' => session_get_once('message'),
+            'old' => $this->getSavedFormValues(),
+            'errors' => session_get_once('errors'),
+        ];
+        $this->sendPage('auth/login', $data);
     }
 
     public function store() {

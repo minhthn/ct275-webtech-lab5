@@ -9,7 +9,7 @@ use App\Models\User;
 class SessionGuard {
     protected static $user;
 
-    public function login(User $user, array $credentials): bool {
+    public static function login(User $user, array $credentials): bool {
         $verified = password_verify($credentials['password'], $user->password);
         if ($verified) {
             $_SESSION['user_id'] = $user->id;
