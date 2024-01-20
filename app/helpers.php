@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 if (! function_exists('http_accept_json')) {
-    function http_accept_json() {
+    function http_accept_json(): bool {
         return isset($_SERVER['HTTP_ACCEPT']) &&
                 (strpos(strtolower($_SERVER['HTTP_ACCEPT']), 'application/json') !== false);
     }

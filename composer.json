@@ -17,6 +17,7 @@
     "require": {
         "illuminate/database": "^10.41",
         "bramus/router": "^1.6",
-        "vlucas/phpdotenv": "^5.6"
+        "vlucas/phpdotenv": "^5.6",
+        "league/plates": "^3.5"
     }
 }
