@@ -37,7 +37,7 @@ class ContactsController extends Controller {
             $contact->user()->associate(SessionGuard::user());
             $contact->save();
 
-            redirect('/');
+            redirect('/');  
         }
 
         // store all form values to session
@@ -53,5 +53,37 @@ class ContactsController extends Controller {
             'phone' => preg_replace('/\D+/', '', $data['phone'] ?? ''),
             'notes' => $data['notes'],
         ];
+    }
+
+    public function edit($contactId) {
+        $contact = SessionGuard::user()->contacts()->find($contactId);
+        if (! $contact) {
+            $this->sendNotFound();
+        }
+
+        $formValues = $this->getSavedFormValues();
+        $data = [
+            'errors' => session_get_once('errors'),
+            'contact' => (! empty($formValues)
+                    ? array_merge($formValues, ['id' => $contactId])
+                    : $contact->toArray()),
+        ];
+        $this->sendPage('contacts/edit', $data);
+    }
+
+    public function update($contactId) {
+        $contact = SessionGuard::user()->contacts()->find($contactId);
+        if (! $contact) {
+            $this->sendNotFound();
+        }
+        $data = $this->filterContactData($_POST);
+        $model_errors = Contact::validate($data);
+        if (empty($model_errors)) {
+            $contact->fill($data);
+            $contact->save();
+            redirect('/');
+        }        
+        $this->saveFormValues($_POST);
+        redirect("/contacts/edit/{$contactId}", ['errors' => $model_errors]);
     }
 }

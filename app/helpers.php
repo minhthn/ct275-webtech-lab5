@@ -11,7 +11,7 @@ if (! function_exists('http_accept_json')) {
 
 if (! function_exists('redirect')) {
     // redirect to another page
-    function redirect($location, array $data = []) {
+    function redirect($location, array $data = []): never {
         foreach ($data as $key => $value) {
             $_SESSION[$key] = $value;
         }

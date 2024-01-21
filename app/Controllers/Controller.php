@@ -31,7 +31,7 @@ class Controller {
         return session_get_once('form', []);
     }
 
-    public function sendNotFound() {
+    public function sendNotFound(): never {
         http_response_code(404);
         $this->sendPage('errors/404', []);
     }

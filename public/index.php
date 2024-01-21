@@ -30,6 +30,8 @@ $router->get('/', ContactsController::class . '@index');
 $router->get('/home', ContactsController::class . '@index');
 $router->get('/contacts/create', ContactsController::class . '@create');
 $router->post('/contacts', ContactsController::class . '@store');
+$router->get('/contacts/edit/(\d+)', ContactsController::class . '@edit');
+$router->post('/contacts/(\d+)', ContactsController::class . '@update');
 
 $router->set404(Controller::class . '@sendNotFound');
 
