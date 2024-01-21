@@ -28,6 +28,8 @@ $router->post('/logout', LoginController::class . '@logoutUser');
 // contacts
 $router->get('/', ContactsController::class . '@index');
 $router->get('/home', ContactsController::class . '@index');
+$router->get('/contacts/create', ContactsController::class . '@create');
+$router->post('/contacts', ContactsController::class . '@store');
 
 $router->set404(Controller::class . '@sendNotFound');
 

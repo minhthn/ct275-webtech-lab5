@@ -25,7 +25,7 @@ class SessionGuard {
     }
 
     public static function logout(): void {
-        unset(static::$user);
+        static::$user = null;
         session_unset();
         session_destroy();
     }

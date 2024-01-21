@@ -1,6 +1,6 @@
 <?php
 $this->layout("layouts/default", [
-    'branch' => APP_NAME
+    'branch' => APP_NAME,
     'title' => 'Register' . ' | ' . APP_NAME,
 ]);
 ?>

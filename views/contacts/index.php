@@ -25,7 +25,7 @@ $this->layout("layouts/default", [
 
             <!-- FLASH MESSAGES -->
 
-            <a href="/contacts/add" class="btn btn-primary mb-3">
+            <a href="/contacts/create" class="btn btn-primary mb-3">
                 <i class="fa fa-plus"></i> New Contact</a>
 
             <!-- Table Starts Here -->

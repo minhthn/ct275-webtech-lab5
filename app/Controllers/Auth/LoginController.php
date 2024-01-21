@@ -10,9 +10,6 @@ use App\Models\User;
 
 class LoginController extends Controller {
     public function __construct() {
-        if (SessionGuard::isUserLoggedIn()) {
-            redirect('/home');
-        }
         parent::__construct();
     }
 
