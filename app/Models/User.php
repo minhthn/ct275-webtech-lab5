@@ -26,4 +26,8 @@ class User extends Model {
         }
         return $errors;
     }
+
+    public function contacts() {
+        return $this->hasMany(Contact::class);
+    }
 }

@@ -6,7 +6,7 @@ namespace App\Controllers;
 
 use App\SessionGuard;
 
-class HomeController extends Controller {
+class ContactsController extends Controller {
     public function __construct() {
         if (! SessionGuard::isUserLoggedIn()) {
             redirect('/login');
@@ -15,6 +15,8 @@ class HomeController extends Controller {
     }
 
     public function index() {
-        $this->sendPage('home');
+        $this->sendPage('contacts/index', [
+            'contacts' => SessionGuard::user()->contacts, // ??
+        ]);
     }
 }
