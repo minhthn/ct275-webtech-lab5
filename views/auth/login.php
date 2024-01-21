@@ -1,11 +1,9 @@
 <?php
-
-use App\SessionGuard;
-
-var_dump(SessionGuard::isUserLoggedIn());
+$this->layout("layouts/default", [
+    'branch' => APP_NAME,
+    'title' => 'Login' . ' | ' . APP_NAME,
+]);
 ?>
-
-<?php $this->layout("layouts/default", ["title" => APP_NAME]) ?>
 
 <?php $this->start("page") ?>
 <div class="container">

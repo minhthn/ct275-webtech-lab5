@@ -1,4 +1,9 @@
-<?php $this->layout("layouts/default", ["title" => APP_NAME]) ?>
+<?php
+$this->layout("layouts/default", [
+    'branch' => APP_NAME,
+    'title' => '404 Not found' . ' | ' . APP_NAME,
+]);
+?>
 
 <?php $this->start("page") ?>
 <div class="container">

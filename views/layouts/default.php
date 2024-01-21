@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-md sticky-top navbar-light bg-light">
         <!-- Branding Image -->
         <a class="navbar-brand" href="/">
-            <?= $this->e($title) ?>
+            <?= $this->e($branch) ?>
         </a>
 
         <!-- Collapsed Hamburger -->
