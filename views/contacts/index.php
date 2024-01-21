@@ -63,6 +63,29 @@ $this->layout("layouts/default", [
         </div>
     </div>
 </div>
+
+<div id="delete-confirm" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirmation</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">Do you want to delete this contact?</div>
+            <div class="modal-footer">
+                <button type="button"
+                    data-dismiss="modal"
+                    class="btn btn-danger" id="delete">Delete</button>
+                <button type="button"
+                    data-dismiss="modal"
+                    class="btn btn-default">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php $this->stop() ?>
 
 <?php $this->start("page_specific_js") ?>
@@ -70,6 +93,25 @@ $this->layout("layouts/default", [
 <script>
     $(document).ready(function() {
         new DataTable('#contacts');
+
+        $('button[name="delete-contact"').on('click', function (event) {
+            event.preventDefault();
+            const form = $(this).closest('form');
+            const nameTd = $(this).closest('tr').find('td:first-child');
+            if (nameTd.length > 0) {
+                $('.modal-body').html(
+                    `Do you want to delete "${nameTd.text()}"?`
+                );
+            }
+            $('#delete-confirm')
+                .modal({
+                    backdrop: 'static',
+                    keyboard: false,
+                })
+                .one('click', '#delete', function (event) {
+                    form.trigger('submit');
+                });
+        }); 
     });
 </script>
 <?php $this->stop() ?>

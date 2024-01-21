@@ -86,4 +86,14 @@ class ContactsController extends Controller {
         $this->saveFormValues($_POST);
         redirect("/contacts/edit/{$contactId}", ['errors' => $model_errors]);
     }
+
+    public function delete($contactId) {
+        $contact = SessionGuard::user()->contacts()->find($contactId);
+        if (! $contact) {
+            $this->sendNotFound();
+        }
+
+        $contact->delete();
+        redirect('/');
+    }
 }

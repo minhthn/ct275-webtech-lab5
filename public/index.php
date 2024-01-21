@@ -32,6 +32,7 @@ $router->get('/contacts/create', ContactsController::class . '@create');
 $router->post('/contacts', ContactsController::class . '@store');
 $router->get('/contacts/edit/(\d+)', ContactsController::class . '@edit');
 $router->post('/contacts/(\d+)', ContactsController::class . '@update');
+$router->post('/contacts/delete/(\d+)', ContactsController::class . '@delete');
 
 $router->set404(Controller::class . '@sendNotFound');
 
